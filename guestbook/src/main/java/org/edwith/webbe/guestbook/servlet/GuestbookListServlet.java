@@ -19,6 +19,12 @@ public class GuestbookListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 코드를 작성하세요.
+    	response.setContentType("text/html; charset = UTF-8;");
+    	GuestbookDao guestBookDao = new GuestbookDao();
+    	List<Guestbook> list = guestBookDao.getGuestbooks();
+    	request.setAttribute("list", list);
+    	
+    	RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/WEB-INF/guestbook/guestbooks.jsp");
+    	requestDispatcher.forward(request, response);
     }
-
 }
